@@ -1,93 +1,293 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Home, Phone, Package, Twitter, Instagram, GitBranch } from 'lucide-react';
+
+const StyledProductPage0608Labs = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom right, #1a202c, #000000);
+  color: white;
+`;
+
+const Header = styled.header`
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Logo = styled.div`
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+`;
+
+const NavButton = styled.button`
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+`;
+
+const MainContent = styled.main`
+  flex-grow: 1;
+`;
+
+const HeroSection = styled.section`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+`;
+
+const HeroTitle = styled.h1`
+  font-size: calc(2vw + 2rem);
+  font-weight: bold;
+  line-height: 1.2;
+`;
+
+const HeroSubtitle = styled.p`
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const ProductsSection = styled.section`
+  padding: 4rem 1rem;
+`;
+
+const ProductsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 72rem;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+const ProductBox = styled.div`
+  flex: 1;
+  background: linear-gradient(to bottom right, #2d3748, #1a202c);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const ProductTitle = styled.h2`
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+`;
+
+const AnnouncementsSection = styled.section`
+  padding: 4rem 1rem;
+  position: relative;
+  overflow: hidden;
+`;
+
+const AnnouncementsCircle = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 150%;
+  background: linear-gradient(to bottom right, #2d3748, #1a202c);
+  border-radius: 50%;
+`;
+
+const AnnouncementsContent = styled.div`
+  position: relative;
+  z-index: 10;
+  text-align: center;
+`;
+
+const AnnouncementsTitle = styled.h2`
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+`;
+
+const AnnouncementBox = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+`;
+
+const AnnouncementImage = styled.img`
+  margin: 0 auto 1rem auto;
+  border-radius: 0.25rem;
+`;
+
+const Footer = styled.footer`
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem 0;
+`;
+
+const FooterContent = styled.div`
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+const FooterLogo = styled.img`
+  height: 3rem;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
+`;
+
+const FooterLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+`;
+
+const FooterSectionTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+`;
+
+const SocialIcons = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+const FooterLinkList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const FooterLinkItem = styled.li`
+  margin-bottom: 0.5rem;
+`;
+
+const FooterLink = styled.a`
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: white;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 const ProductPage0608Labs = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 to-black text-white">
-      <header className="p-4 bg-black bg-opacity-50 flex justify-between items-center">
-        <div className="text-2xl font-bold">0608labs</div>
-        <nav>
-          <button className="mx-2 p-2 rounded-full bg-white bg-opacity-10 hover:bg-opacity-20 transition-all">
-            <Home className="w-6 h-6" />
-          </button>
-          <button className="mx-2 p-2 rounded-full bg-white bg-opacity-10 hover:bg-opacity-20 transition-all">
-            <Phone className="w-6 h-6" />
-          </button>
-          <button className="mx-2 p-2 rounded-full bg-white bg-opacity-10 hover:bg-opacity-20 transition-all">
-            <Package className="w-6 h-6" />
-          </button>
-        </nav>
-      </header>
+    <StyledProductPage0608Labs>
+      <Header>
+        <Logo>0608labs</Logo>
+        <Nav>
+          <NavButton>
+            <Home />
+          </NavButton>
+          <NavButton>
+            <Phone />
+          </NavButton>
+          <NavButton>
+            <Package />
+          </NavButton>
+        </Nav>
+      </Header>
 
-      <main className="flex-grow">
-        <section className="h-screen flex items-center justify-center p-4">
-          <h1 className="text-6xl font-bold text-center leading-tight" style={{fontSize: 'calc(2vw + 2rem)'}}>
+      <MainContent>
+        <HeroSection>
+          <HeroTitle>
             Welcome to 0608labs
-            <p className="text-xl mt-4 max-w-2xl mx-auto">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </h1>
-        </section>
+            <HeroSubtitle>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </HeroSubtitle>
+          </HeroTitle>
+        </HeroSection>
 
-        <section className="py-16 px-4">
-          <div className="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto">
-            <div className="flex-1 bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-lg shadow-xl">
-              <h2 className="text-3xl font-bold mb-4">Product One</h2>
-              <p className="text-xl">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.
-              </p>
-            </div>
-            <div className="flex-1 bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-lg shadow-xl">
-              <h2 className="text-3xl font-bold mb-4">Product Two</h2>
-              <p className="text-xl">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.
-              </p>
-            </div>
-          </div>
-        </section>
+        <ProductsSection>
+          <ProductsContainer>
+            <ProductBox>
+              <ProductTitle>Product One</ProductTitle>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+            </ProductBox>
+            <ProductBox>
+              <ProductTitle>Product Two</ProductTitle>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+            </ProductBox>
+          </ProductsContainer>
+        </ProductsSection>
 
-        <section className="py-16 px-4 relative overflow-hidden">
-          <div className="max-w-6xl mx-auto">
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-gradient-to-br from-gray-800 to-gray-900 rounded-full"></div>
-            <div className="relative z-10 text-center">
-              <h2 className="text-4xl font-bold mb-8">Announcements</h2>
-              <div className="bg-black bg-opacity-50 p-8 rounded-lg shadow-xl">
-                <img src="/api/placeholder/400/300" alt="Announcement" className="mx-auto mb-4 rounded" />
-                <p className="text-xl">
-                  Stay tuned for exciting updates and new product releases!
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
+        <AnnouncementsSection>
+          <AnnouncementsCircle />
+          <AnnouncementsContent>
+            <AnnouncementsTitle>Announcements</AnnouncementsTitle>
+            <AnnouncementBox>
+              <AnnouncementImage src="/api/placeholder/400/300" alt="Announcement" />
+              <p>Stay tuned for exciting updates and new product releases!</p>
+            </AnnouncementBox>
+          </AnnouncementsContent>
+        </AnnouncementsSection>
+      </MainContent>
 
-      <footer className="bg-black bg-opacity-50 py-8">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <img src="/api/placeholder/150/50" alt="0608labs Logo" className="h-12" />
-          </div>
-          <div className="flex flex-col md:flex-row gap-8">
+      <Footer>
+        <FooterContent>
+          <FooterLogo src="/api/placeholder/150/50" alt="0608labs Logo" />
+          <FooterLinks>
             <div>
-              <h3 className="text-xl font-bold mb-2">Company</h3>
-              <div className="flex gap-4">
-                <Twitter className="w-6 h-6 cursor-pointer" />
-                <Instagram className="w-6 h-6 cursor-pointer" />
-                <GitBranch className="w-6 h-6 cursor-pointer" /> 
-              </div>
+              <FooterSectionTitle>Company</FooterSectionTitle>
+              <SocialIcons>
+                <FooterLink href="#"><Twitter /></FooterLink>
+                <FooterLink href="#"><Instagram /></FooterLink>
+                <FooterLink href="#"><GitBranch /></FooterLink>
+              </SocialIcons>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-2">Legal</h3>
-              <ul>
-                <li><a href="#" className="hover:underline">Terms</a></li>
-                <li><a href="#" className="hover:underline">Privacy</a></li>
-                <li><a href="#" className="hover:underline">Refunds</a></li>
-              </ul>
+              <FooterSectionTitle>Legal</FooterSectionTitle>
+              <FooterLinkList>
+                <FooterLinkItem><FooterLink href="#">Terms</FooterLink></FooterLinkItem>
+                <FooterLinkItem><FooterLink href="#">Privacy</FooterLink></FooterLinkItem>
+                <FooterLinkItem><FooterLink href="#">Refunds</FooterLink></FooterLinkItem>
+              </FooterLinkList>
             </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+          </FooterLinks>
+        </FooterContent>
+      </Footer>
+    </StyledProductPage0608Labs>
   );
 };
 
